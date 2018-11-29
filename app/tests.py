@@ -188,3 +188,10 @@ class TestTripleCanHandleSimpleTripling(SimpleTestCase):
             data={"num1": '4'},
         )
         self.assertEqual(response.context['answer'], 12)
+
+    def test_ten_tripled(self):
+        response = self.client.get(
+            path=reverse("triple"),
+            data={"num1": '10'},
+        )
+        self.assertEqual(response.context['answer'], 1000000)
