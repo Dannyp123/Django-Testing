@@ -163,3 +163,10 @@ class TestAddCanHandleSimpleDoubling(SimpleTestCase):
             data={'num1': '-4'},
         )
         self.assertEqual(response.context['solution'], -8)
+
+    def test_one_doubled(self):
+        response = self.client.get(
+            path=reverse('double'),
+            data={'num1': '1'},
+        )
+        self.assertEqual(response.context['solution'], -8)
