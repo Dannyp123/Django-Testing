@@ -1,0 +1,19 @@
+{% extends 'app/base.html' %}
+{% block body %}
+
+<form action="{% url 'double' %}" method="GET" class="col-3">
+    <div class="form-group">
+        <label>
+            Num 1
+            <input type="number" name="number1" class="form-control" placeholder="Num 1">
+        </label>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Double</button>
+    </div>
+    {% if solution is not None %}
+    <h3>Answer: {{ solution }}</h3>
+    {% endif %}
+</form>
+
+{% endblock body %}
