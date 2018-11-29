@@ -134,4 +134,4 @@ class TestAddCanHandleSimpleDoubling(SimpleTestCase):
             data={"num1": '4'},
         )
 
-        self.assertEqual(response.context["answer"], 8)
+        self.assertEqual(response.context["solution"], 8)
