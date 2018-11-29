@@ -195,3 +195,19 @@ class TestTripleCanHandleSimpleTripling(SimpleTestCase):
             data={"num1": '10'},
         )
         self.assertEqual(response.context['answer'], 30)
+
+    def test_one_tripled(self):
+        response = self.client.get(
+            path=reverse("triple"),
+            data={"num1": '1'},
+        )
+        self.assertEqual(response.context.get('answer'), 3)
+
+
+class TestEarnings(SimpleTestCase):
+    def test_seat_a(self):
+        response = self.client.get(
+            path=reverse("earnings"),
+            data={'a': '4'},
+        )
+        self.assertEqual(response.context.get('answer'), 60)
