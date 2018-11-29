@@ -31,3 +31,15 @@ class Triple(View):
             return render(request, 'app/triple.html')
         else:
             return render(request, 'app/triple.html', {'answer': num1 * 3})
+
+
+class Earnings(View):
+    def get(self, request):
+        try:
+            class_a = int(request.GET.get('a'))
+        except ValueError:
+            return render(request, 'app/earnings.html')
+        else:
+            return render(request, 'app/earnings.html', {
+                'answer': class_a * 15,
+            })
