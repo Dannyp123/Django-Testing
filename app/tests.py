@@ -225,4 +225,4 @@ class TestEarnings(SimpleTestCase):
                 'c': '2'
             },
         )
-        self.assertEqual(responce.context.get("answer"), 165)
+        self.assertEqual(response.context.get("answer"), 165)
