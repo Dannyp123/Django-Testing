@@ -16,16 +16,15 @@ class Add(View):
 class Double(View):
     def get(self, request):
         try:
-            number1 = float(request.GET.get('number1'))
+            num1 = float(request.GET.get('num1'))
         except ValueError:
-            return render(request, 'app/double.html', {'solution': solution})
-        else:
-            solution = number1 * 2
             return render(request, 'app/double.html')
+        else:
+            return render(request, 'app/double.html', {'solution': num1 * 2})
 
 
-class Triple(View):
-    def get(self, request):
-        num1 = request.GET.get('num1')
-        num2 = request.GET.get("num2")
-        num3 = request.GET.get("num3")
+# class Triple(View):
+#     def get(self, request):
+#         num1 = request.GET.get('num1')
+#         num2 = request.GET.get("num2")
+#         num3 = request.GET.get("num3")
