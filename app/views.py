@@ -23,8 +23,11 @@ class Double(View):
             return render(request, 'app/double.html', {'solution': num1 * 2})
 
 
-# class Triple(View):
-#     def get(self, request):
-#         num1 = request.GET.get('num1')
-#         num2 = request.GET.get("num2")
-#         num3 = request.GET.get("num3")
+class Triple(View):
+    def get(self, request):
+        try:
+            num1 = float(request.GET.get('num1'))
+        except ValueError:
+            return render(request, 'app/triple.html')
+        else:
+            return render(request, 'app/triple.html', {'answer': num1 * 3})
