@@ -205,9 +205,24 @@ class TestTripleCanHandleSimpleTripling(SimpleTestCase):
 
 
 class TestEarnings(SimpleTestCase):
-    def test_seat_a(self):
+    def test_total_seats(self):
         response = self.client.get(
             path=reverse("earnings"),
-            data={'a': '4'},
+            data={
+                'a': '4',
+                'b': '3',
+                'c': '5'
+            },
         )
-        self.assertEqual(response.context.get('answer'), 60)
+        self.assertEqual(response.context.get('answer'), 141)
+
+    def test_total_seats_second(self):
+        response = self.client.get(
+            path=reverse("earnings"),
+            data={
+                'a': '5',
+                'b': '6',
+                'c': '2'
+            },
+        )
+        self.assertEqual(responce.context.get("answer"), 165)
