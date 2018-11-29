@@ -117,7 +117,7 @@ class TestAddWithoutNumbers(SimpleTestCase):
         self.assertNotIn('answer', response.context)
 
 
-class TestAddCanHandleSimpleDoubling(SimpleTestCase):
+class TestDoubleCanHandleSimpleDoubling(SimpleTestCase):
     ''' 
     4*2=8
     8*2=16
@@ -171,5 +171,20 @@ class TestAddCanHandleSimpleDoubling(SimpleTestCase):
         )
         self.assertEqual(response.context['solution'], 2)
 
-class TestAddCanHandleSimpleTripling(SimpleTestCase):
-    
+
+class TestTripleCanHandleSimpleTripling(SimpleTestCase):
+    '''
+    4*3=12
+    10*3=30
+    0*3=0
+    1*3=3
+    7.5 * 3=22.5
+    -12 * 3 = -36 
+    '''
+
+    def test_four_tripled(self):
+        response = self.client.get(
+            path=reverse('triple'),
+            data={"num1": '4'},
+        )
+        self.assertEqual(response.context['answer'], 12)
