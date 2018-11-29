@@ -46,12 +46,6 @@ class Earnings(View):
                 'answer': class_a * 15 + class_b * 12 + class_c * 9,
             })
 
-    # def get(self, request):
-    #     try:
-
-    #     except ValueError:
-    #         return render(request, 'app/earnings.html')
-    #     else:
-    #         return render(request, 'app/earnings.html', {
-    #             'answer': class_b * 12,
-    #         })
+class Both(View):
+    def get(self, request):
+        
