@@ -149,3 +149,10 @@ class TestAddCanHandleSimpleDoubling(SimpleTestCase):
             data={'num1': '0'},
         )
         self.assertEqual(response.context['solution'], 0)
+
+    def test_float_doubled(self):
+        response = self.client.get(
+            path=reverse('double'),
+            data={'num1': '2.2'},
+        )
+        self.assertEqual(response.context['solution'], 4.3)
