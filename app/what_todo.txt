@@ -13,12 +13,13 @@ function both(x, y) {
 // Returns true if both x and y are true.
 }
 
-// (Int, Bool) -> String
+function walkOrDrive(miles, isNiceWeather) {
+    // (Int, Bool) -> String
 // Returns 'walk' if the user should walk
 // and 'drive' if the user should drive to their destination.
 // The user should walk if it is nice weather
 // and the distance is a quarter mile or less.
-function walkOrDrive(miles, isNiceWeather) {}
+}
 
 // (Int, Number) -> String
 // Return 'Densely Populated' if the land density is greater than 100,
