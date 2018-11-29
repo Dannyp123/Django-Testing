@@ -155,4 +155,4 @@ class TestAddCanHandleSimpleDoubling(SimpleTestCase):
             path=reverse('double'),
             data={'num1': '2.2'},
         )
-        self.assertEqual(response.context['solution'], 4.3)
+        self.assertEqual(response.context['solution'], 4.4)
