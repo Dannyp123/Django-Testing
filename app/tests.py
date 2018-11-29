@@ -115,3 +115,23 @@ class TestAddWithoutNumbers(SimpleTestCase):
         )
         self.assertTemplateUsed(response, 'app/add.html')
         self.assertNotIn('answer', response.context)
+
+
+class TestAddCanHandleSimpleDoubling(SimpleTestCase):
+    ''' 
+    4*2=8
+    8*2=16
+    0*0=0
+    0*2=0
+    1*2=2
+    2.2*2=4.4
+    -4*2=-8
+    '''
+
+    def test_four_doubled(self):
+        response = self.client.get(
+            path=reverse('double'),
+            data={"num1": '4'},
+        )
+
+        self.assertEqual(response.context["answer"], 8)
