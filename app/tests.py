@@ -170,3 +170,6 @@ class TestAddCanHandleSimpleDoubling(SimpleTestCase):
             data={'num1': '1'},
         )
         self.assertEqual(response.context['solution'], 2)
+
+class TestAddCanHandleSimpleTripling(SimpleTestCase):
+    
