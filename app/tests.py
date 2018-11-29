@@ -194,4 +194,4 @@ class TestTripleCanHandleSimpleTripling(SimpleTestCase):
             path=reverse("triple"),
             data={"num1": '10'},
         )
-        self.assertEqual(response.context['answer'], 1000000)
+        self.assertEqual(response.context['answer'], 30)
