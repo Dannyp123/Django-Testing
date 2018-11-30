@@ -226,3 +226,14 @@ class TestEarnings(SimpleTestCase):
             },
         )
         self.assertEqual(response.context.get("answer"), 165)
+
+    def test_total_seats_third(self):
+        response = self.client.get(
+            path=reverse("earnings"),
+            data={
+                'seat_a': '2',
+                'seat_b': '1',
+                'seat_c': '4'
+            },
+        )
+        self.assertEqual(response.context.get("answer"), 78)
