@@ -237,3 +237,16 @@ class TestEarnings(SimpleTestCase):
             },
         )
         self.assertEqual(response.context.get("answer"), 78)
+
+
+class TestBoth(SimpleTestCase):
+    def test_if_true(self):
+        response = self.client.get(
+            path=reverse("both"),
+            data={
+                'input_1': 'True',
+                'input_2': 'True'
+            },
+        )
+
+        self.assertEqual(response.context["answer"], False)
