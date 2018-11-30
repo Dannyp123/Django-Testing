@@ -325,3 +325,49 @@ class TestHowPopulated(SimpleTestCase):
         )
         self.assertEqual(response.context['answer'], 'Densely Populated')
 
+class TestGoldStars(SimpleTestCase):
+    def test_one_star(self):
+        response = self.client.get(
+            path = reverse('gold_stars'),
+            data={
+                'score_input': '800',
+            }
+        )
+        self.assertEqual(response.context['answer'], '*')
+
+    def test_two_star(self):
+        response = self.client.get(
+            path = reverse('gold_stars'),
+            data={
+                'score_input': '4500',
+            }
+        )
+        self.assertEqual(response.context['answer'], '**')
+
+    def test_three_star(self):
+        response = self.client.get(
+            path = reverse('gold_stars'),
+            data={
+                'score_input': '7500',
+            }
+        )
+        self.assertEqual(response.context['answer'], '***')
+
+    def test_four_star(self):
+        response = self.client.get(
+            path = reverse('gold_stars'),
+            data={
+                'score_input': '9500',
+            }
+        )
+        self.assertEqual(response.context['answer'], '****')
+
+    def test_five_star(self):
+        response = self.client.get(
+            path = reverse('gold_stars'),
+            data={
+                'score_input': '10500',
+            }
+        )
+        self.assertEqual(response.context['answer'], '*****')
+    
