@@ -209,9 +209,9 @@ class TestEarnings(SimpleTestCase):
         response = self.client.get(
             path=reverse("earnings"),
             data={
-                'a': '4',
-                'b': '3',
-                'c': '5'
+                'seat_a': '4',
+                'seat_b': '3',
+                'seat_c': '5'
             },
         )
         self.assertEqual(response.context.get('answer'), 141)
@@ -220,9 +220,9 @@ class TestEarnings(SimpleTestCase):
         response = self.client.get(
             path=reverse("earnings"),
             data={
-                'a': '5',
-                'b': '6',
-                'c': '2'
+                'seat_a': '5',
+                'seat_b': '6',
+                'seat_c': '2'
             },
         )
         self.assertEqual(response.context.get("answer"), 165)
