@@ -54,6 +54,9 @@ class Both(View):
         if form.is_valid():
             input_1 = form.cleaned_data['input_1']
             input_2 = form.cleaned_data['input_2']
-            return render(request, 'app/both.html', {'answer': True})
+            if input_1 and input_2:
+                return render(request, 'app/both.html', {'answer': True})
+            else:
+                return render(request, 'app/both.html', {'answer': False})
         else:
             return render(request, 'app/both.html')
