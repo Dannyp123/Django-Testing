@@ -80,4 +80,15 @@ class WalkOrDrive(View):
 
 class HowPopulated(View):
     def get(self, request):
-        return render(request, 'app/how-populated')
+        form = forms.HowPopulate(data=request.GET)
+        if form.is_valid():
+            population_input = form.cleaned_data['population_input']
+            land_area_input = form.cleaned_data['land_area_input']
+            if population_input / land_area_input > 100:
+                return render(request, 'app/how-populated',
+                              {'answer': 'Densely Populated'})
+            else:
+                return render(request, 'app/how-populated',
+                              {'answer': 'Sparsely Populated'})
+        else:
+            return render(request, 'app/how-populated')
