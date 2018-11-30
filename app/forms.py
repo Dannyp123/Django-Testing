@@ -33,3 +33,7 @@ class WalkOrDrive(forms.Form):
 class HowPopulate(forms.Form):
     population_input = forms.FloatField(min_value=0)
     land_area_input = forms.FloatField(min_value=0)
+
+
+class GoldStars(forms.Form):
+    score_input = forms.IntegerField()
