@@ -60,3 +60,7 @@ class Both(View):
                 return render(request, 'app/both.html', {'answer': False})
         else:
             return render(request, 'app/both.html')
+
+class WalkOrDrive(View):
+    def get(self, request):
+        
