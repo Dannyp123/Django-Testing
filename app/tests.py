@@ -249,4 +249,4 @@ class TestBoth(SimpleTestCase):
             },
         )
 
-        self.assertEqual(response.context["answer"], False)
+        self.assertEqual(response.context["answer"], True)
