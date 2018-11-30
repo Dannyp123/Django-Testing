@@ -61,6 +61,7 @@ class Both(View):
         else:
             return render(request, 'app/both.html')
 
+
 class WalkOrDrive(View):
     def get(self, request):
-        
+        return render(request, 'app/walk-or-drive.html')
