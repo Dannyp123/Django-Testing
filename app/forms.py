@@ -23,3 +23,8 @@ class EarningsForm(forms.Form):
 class BothForm(forms.Form):
     input_1 = forms.BooleanField(required=False)
     input_2 = forms.BooleanField(required=False)
+
+
+class WalkOrDrive(forms.Form):
+    distance_input = forms.FloatField()
+    is_nice_weather_input = forms.BooleanField(required=False)
