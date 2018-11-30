@@ -250,3 +250,34 @@ class TestBoth(SimpleTestCase):
         )
 
         self.assertEqual(response.context["answer"], True)
+
+    def test_if_false(self):
+        response = self.client.get(
+            path=reverse("both"),
+            data={
+                'input_1': 'False',
+                'input_2': 'False'
+            },
+        )
+        self.assertEqual(response.context["answer"], False)
+
+    def test_if_false_or_true(self):
+        response = self.client.get(
+            path=reverse("both"),
+            data={
+                'input_1': 'False',
+                'input_2': 'True'
+            },
+        )
+
+        self.assertEqual(response.context["answer"], False)
+
+    def test_if_true_or_false(self):
+        response = self.client.get(
+            path=reverse("both"),
+            data={
+                'input_1': 'True',
+                'input_2': 'False'
+            },
+        )
+        self.assertEqual(response.context['answer'], False)
