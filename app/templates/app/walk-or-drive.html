@@ -1,0 +1,11 @@
+{% extends 'app/base.html' %}
+{% block body %}
+<form action="{% url 'walk_or_drive' %}" method="GET" class="col-3">
+
+
+
+    {% if answer is not None %}
+    <h3>Answer: {{ answer }}</h3>
+    {% endif %}
+</form>
+{% endblock body %}
