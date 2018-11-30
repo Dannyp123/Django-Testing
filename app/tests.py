@@ -307,5 +307,10 @@ class TestWalkOrDrive(SimpleTestCase):
 class TestHowPopulated(SimpleTestCase):
     def test_densely_populated(self):
         response = self.client.get(
-            
+            path = reverse('how_populated'),
+            data={
+                'population_input': 25000,
+                'land_area_input': 285
+            },
         )
+        self.assertEqual(response.context['answer'], 'Sparsely Populated')
