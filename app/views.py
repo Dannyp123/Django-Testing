@@ -76,3 +76,8 @@ class WalkOrDrive(View):
                               {'answer': 'drive'})
         else:
             return render(request, 'app/walk-or-drive.html')
+
+
+class HowPopulated(View):
+    def get(self, request):
+        return render(request, 'app/how-populated')
