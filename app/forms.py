@@ -21,5 +21,5 @@ class EarningsForm(forms.Form):
 
 
 class BothForm(forms.Form):
-    input_1 = forms.BooleanField()
-    input_2 = forms.BooleanField()
+    input_1 = forms.BooleanField(required=False)
+    input_2 = forms.BooleanField(required=False)
