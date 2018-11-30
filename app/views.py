@@ -70,9 +70,9 @@ class WalkOrDrive(View):
             is_nice_weather_input = form.cleaned_data['is_nice_weather_input']
             if distance_input <= 0.25 and is_nice_weather_input:
                 return render(request, 'app/walk-or-drive.html',
-                              {'answer': walk})
+                              {'answer': 'walk'})
             else:
                 return render(request, 'app/walk-or-drive.html',
-                              {'answer': drive})
+                              {'answer': 'drive'})
         else:
             return render(request, 'app/walk-or-drive.html')
