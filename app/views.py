@@ -92,3 +92,8 @@ class HowPopulated(View):
                               {'answer': 'Sparsely Populated'})
         else:
             return render(request, 'app/how-populated.html')
+
+
+class GoldStars(View):
+    def get(self, request):
+        return render(request, 'app/gold-stars.html')
