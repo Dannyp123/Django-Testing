@@ -286,10 +286,10 @@ class TestBoth(SimpleTestCase):
 class TestWalkOrDrive(SimpleTestCase):
     def test_walk(self):
         response = self.client.get(
-            path=reverse('walk-_or_drive'),
+            path=reverse('walk_or_drive'),
             data={
                 'distance_input': '0.15',
                 'is_nice_weather_input': 'True'
             },
         )
-        self.assertEqual(response.context['answer'], walk)
+        self.assertEqual(response.context['answer'], 'walk')
