@@ -57,8 +57,3 @@ class Both(View):
             return render(request, 'app/both.html', {'answer': True})
         else:
             return render(request, 'app/both.html')
-        # input_1 = request.GET.get('input_1')
-        # input_2 = request.GET.get('input_2')
-        # if input_1 == True:
-        #     return render(request, 'app/both.html', {'answer': True})
-        # else:
