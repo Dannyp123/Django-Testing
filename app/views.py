@@ -96,4 +96,21 @@ class HowPopulated(View):
 
 class GoldStars(View):
     def get(self, request):
-        return render(request, 'app/gold-stars.html')
+        form = forms.GoldStars(data=request.GET)
+        if form.is_valid():
+            score_input = form.cleaned_data['score_input']
+            if score_input < 1000:
+                return render(request, 'app/gold-stars.html', {'answer': '*'})
+            elif score_input < 5000:
+                return render(request, 'app/gold-stars.html', {'answer': '**'})
+            elif score_input < 8000:
+                return render(request, 'app/gold-stars.html',
+                              {'answer': '***'})
+            elif score_input < 10000:
+                return render(request, 'app/gold-stars.html',
+                              {'answer': '****'})
+            elif score_input >= 10000:
+                return render(request, 'app/gold-stars.html',
+                              {'answer': '*****'})
+        else:
+            return render(request, 'app/gold-stars.html')
