@@ -64,4 +64,15 @@ class Both(View):
 
 class WalkOrDrive(View):
     def get(self, request):
-        return render(request, 'app/walk-or-drive.html')
+        form = forms.WalkOrDrive(data=request.GET)
+        if form.is_valid():
+            distance_input = form.cleaned_data['distance_input']
+            is_nice_weather_input = form.cleaned_data['is_nice_weather_input']
+            if distance_input <= 0.25 and is_nice_weather_input:
+                return render(request, 'app/walk-or-drive.html',
+                              {'answer': walk})
+            else:
+                return render(request, 'app/walk-or-drive.html',
+                              {'answer': drive})
+        else:
+            return render(request, 'app/walk-or-drive.html')
