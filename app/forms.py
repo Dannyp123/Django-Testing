@@ -18,3 +18,8 @@ class EarningsForm(forms.Form):
     seat_a = forms.IntegerField()
     seat_b = forms.IntegerField()
     seat_c = forms.IntegerField()
+
+
+class BothForm(forms.Form):
+    input_1 = forms.BooleanField()
+    input_2 = forms.BooleanField()
