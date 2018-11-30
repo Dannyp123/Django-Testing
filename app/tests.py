@@ -293,3 +293,19 @@ class TestWalkOrDrive(SimpleTestCase):
             },
         )
         self.assertEqual(response.context['answer'], 'walk')
+
+    def test_drive(self):
+        response = self.client.get(
+            path=reverse('walk_or_drive'),
+            data={
+                'distance_input': '1.50',
+                'is_nice_weather_input': 'False'
+            },
+        )
+        self.assertEqual(response.context['answer'], 'drive')
+
+class TestHowPopulated(SimpleTestCase):
+    def test_densely_populated(self):
+        response = self.client.get(
+            
+        )
