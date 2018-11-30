@@ -305,7 +305,7 @@ class TestWalkOrDrive(SimpleTestCase):
         self.assertEqual(response.context['answer'], 'drive')
 
 class TestHowPopulated(SimpleTestCase):
-    def test_densely_populated(self):
+    def test_sparsely_populated(self):
         response = self.client.get(
             path = reverse('how_populated'),
             data={
@@ -314,3 +314,14 @@ class TestHowPopulated(SimpleTestCase):
             },
         )
         self.assertEqual(response.context['answer'], 'Sparsely Populated')
+
+    def test_densely_populated(self):
+        response = self.client.get(
+            path = reverse('how_populated'),
+            data={
+                'population_input': 25000,
+                'land_area_input': 12
+            },
+        )
+        self.assertEqual(response.context['answer'], 'Densely Populated')
+
