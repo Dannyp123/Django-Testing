@@ -47,21 +47,18 @@ class Earnings(View):
         else:
             return render(request, 'app/earnings.html')
 
-        # try:
-        #     seat_a = int(request.GET.get('a'))
-        #     seat_b = int(request.GET.get('b'))
-        #     seat_c = int(request.GET.get('c'))
-        # except ValueError:
-        #
-        # else:
-        #     r
-
 
 class Both(View):
     def get(self, request):
-        input_1 = request.GET.get('input_1')
-        input_2 = request.GET.get('input_2')
-        if input_1 == True:
+        form = forms.BothForm(data=request.GET)
+        if form.is_valid():
+            input_1 = form.cleaned_data['input_1']
+            input_2 = form.cleaned_data['input_2']
             return render(request, 'app/both.html', {'answer': True})
         else:
             return render(request, 'app/both.html')
+        # input_1 = request.GET.get('input_1')
+        # input_2 = request.GET.get('input_2')
+        # if input_1 == True:
+        #     return render(request, 'app/both.html', {'answer': True})
+        # else:
