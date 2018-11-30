@@ -85,7 +85,7 @@ class HowPopulated(View):
             population_input = form.cleaned_data['population_input']
             land_area_input = form.cleaned_data['land_area_input']
             if population_input / land_area_input > 100:
-                return render(request, 'app/how-populated',
+                return render(request, 'app/how-populateds',
                               {'answer': 'Densely Populated'})
             else:
                 return render(request, 'app/how-populated',
