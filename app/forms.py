@@ -37,3 +37,7 @@ class HowPopulate(forms.Form):
 
 class GoldStars(forms.Form):
     score_input = forms.IntegerField()
+
+
+class HowManyPoints(forms.Form):
+    points_input = forms.CharField()
