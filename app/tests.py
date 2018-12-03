@@ -171,6 +171,26 @@ class TestDoubleCanHandleSimpleDoubling(SimpleTestCase):
         )
         self.assertEqual(response.context['solution'], 2)
 
+class TestDoubleCanHandleNonNumber(SimpleTestCase):
+    def test_given_non_numeric_input_for_double(self):
+        response = self.client.get(
+            path=reverse('double'),
+            data={
+                "num1": 'a'
+            },
+        )
+        self.assertTemplateUsed(response, 'app/double.html')
+        self.assertNotIn("answer", response.context)
+
+    def test_given_one_empty_inputs_for_double(self):
+        response = self.client.get(
+            path=reverse('double'),
+            data={
+                "num1": " "
+            },
+        )
+        self.assertTemplateUsed(response, 'app/double.html')
+        self.assertNotIn("answer", response.context)
 
 class TestTripleCanHandleSimpleTripling(SimpleTestCase):
     '''
@@ -203,6 +223,17 @@ class TestTripleCanHandleSimpleTripling(SimpleTestCase):
         )
         self.assertEqual(response.context.get('answer'), 3)
 
+
+class TestTripleCanHandleBadCases(SimpleTestCase):
+    def test_given_non_numeric_input_for_triple(self):
+        response = self.client.get(
+            path=reverse('triple'),
+            data={
+                "num1": 'a',
+            },
+        )
+        self.assertTemplateUsed(response, 'app/triple.html')
+        self.assertNotIn('answer', response.context)
 
 class TestEarnings(SimpleTestCase):
     def test_total_seats(self):
@@ -237,6 +268,21 @@ class TestEarnings(SimpleTestCase):
             },
         )
         self.assertEqual(response.context.get("answer"), 78)
+
+class TestInvalidSeats(SimpleTestCase):
+    def test_no_seats(self):
+        response = self.client.get(
+            path=reverse("earnings"),
+            data={
+                'seat_a': '',
+                'seat_b': '',
+                'seat_c': ''
+            },
+        )
+        self.assertTemplateUsed(response, 'app/earnings.html')
+        self.assertNotIn('answer', response.context)
+
+
 
 
 class TestBoth(SimpleTestCase):
@@ -282,6 +328,18 @@ class TestBoth(SimpleTestCase):
         )
         self.assertEqual(response.context['answer'], False)
 
+# class TestNotTrueNorFalse(SimpleTestCase):
+#     def test_empty_check_boxes(self):
+#         response = self.client.get(
+#             path=reverse("both"),
+#             data={
+#                 'input_1': '',
+#                 'input_2': ''
+#             },
+#         )
+#         self.assertTemplateUsed(response, 'app/both.html')
+#         self.assertNotIn('answer', response.context)
+
 
 class TestWalkOrDrive(SimpleTestCase):
     def test_walk(self):
@@ -304,6 +362,30 @@ class TestWalkOrDrive(SimpleTestCase):
         )
         self.assertEqual(response.context['answer'], 'drive')
 
+    def test_drive_second(self):
+        response = self.client.get(
+            path=reverse('walk_or_drive'),
+            data={
+                'distance_input': '5.00',
+                'is_nice_weather_input': 'True'
+            },
+        )
+        self.assertEqual(response.context['answer'], 'drive')
+
+class TestInvalidDistance(SimpleTestCase):
+    def test_letters_in_distance(self):
+        response = self.client.get(
+            path=reverse('walk_or_drive'),
+            data={
+                'distance_input': 'Hello',
+                'is_nice_weather_input': 'True'
+            },
+        )
+        
+        self.assertTemplateUsed(response, 'app/walk-or-drive.html')
+        self.assertNotIn('answer', response.context)
+
+
 class TestHowPopulated(SimpleTestCase):
     def test_sparsely_populated(self):
         response = self.client.get(
@@ -324,6 +406,20 @@ class TestHowPopulated(SimpleTestCase):
             },
         )
         self.assertEqual(response.context['answer'], 'Densely Populated')
+
+class TestInvalidPopulation(SimpleTestCase):
+    def test_letters_in_population(self):
+        response = self.client.get(
+            path = reverse('how_populated'),
+            data={
+                'population_input': 'jkdkdl',
+                'land_area_input': 12
+            },
+        )
+
+        self.assertTemplateUsed(response, 'app/how-populated.html')
+        self.assertNotIn('answer', response.context)
+
 
 class TestGoldStars(SimpleTestCase):
     def test_one_star(self):
@@ -370,6 +466,19 @@ class TestGoldStars(SimpleTestCase):
             }
         )
         self.assertEqual(response.context['answer'], '*****')
+
+class TestInvalidStars(SimpleTestCase):
+    def test_empy_stars(self):
+        response = self.client.get(
+            path = reverse('gold_stars'),
+            data={
+                'score_input': '',
+            }
+        )
+        
+        self.assertTemplateUsed(response, 'app/gold-stars.html')
+        self.assertNotIn('answer', response.context)
+
     
 class TestHowManyPoints(SimpleTestCase):
     def test_extra_kick(self):
@@ -416,6 +525,19 @@ class TestHowManyPoints(SimpleTestCase):
             }
         )
         self.assertEqual(response.context['answer'], 6)
+
+class TestInvalidPoint(SimpleTestCase):
+    def test_empty_points(self):
+        response = self.client.get(
+            path = reverse('points'),
+            data={
+                'points_input': ''
+            }
+        )
+
+        self.assertTemplateUsed(response, 'app/points.html')
+        self.assertNotIn('answer', response.context)
+
 
 
 
