@@ -388,5 +388,37 @@ class TestHowManyPoints(SimpleTestCase):
                 'points_input': 'extra conv'
             }
         )
-        self.assertEqual(response.context['answer'], 2s)
+        self.assertEqual(response.context['answer'], 2)
+
+    def test_safety(self):
+        response = self.client.get(
+            path = reverse('points'),
+            data={
+                'points_input': 'safety'
+            }
+        )
+        self.assertEqual(response.context['answer'], 2)
+
+    def test_feild_goal(self):
+        response = self.client.get(
+            path = reverse('points'),
+            data={
+                'points_input': 'fg'
+            }
+        )
+        self.assertEqual(response.context['answer'], 3)
+
+    def test_touchdow(self):
+        response = self.client.get(
+            path = reverse('points'),
+            data={
+                'points_input': 'td'
+            }
+        )
+        self.assertEqual(response.context['answer'], 6)
+
+
+
+
+        
 
