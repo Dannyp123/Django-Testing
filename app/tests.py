@@ -371,3 +371,22 @@ class TestGoldStars(SimpleTestCase):
         )
         self.assertEqual(response.context['answer'], '*****')
     
+class TestHowManyPoints(SimpleTestCase):
+    def test_extra_kick(self):
+        response = self.client.get(
+            path = reverse('points'),
+            data={
+                'points_input': 'extra kick'
+            }
+        )
+        self.assertEqual(response.context['answer'], 1)
+
+    def test_extra_conv(self):
+        response = self.client.get(
+            path = reverse('points'),
+            data={
+                'points_input': 'extra conv'
+            }
+        )
+        self.assertEqual(response.context['answer'], 2s)
+
