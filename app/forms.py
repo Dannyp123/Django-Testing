@@ -17,9 +17,9 @@ class TripleForm(forms.Form):
 
 
 class EarningsForm(forms.Form):
-    seat_a = forms.IntegerField()
-    seat_b = forms.IntegerField()
-    seat_c = forms.IntegerField()
+    seat_a = forms.IntegerField(label='Number 1')
+    seat_b = forms.IntegerField(label='Number 2')
+    seat_c = forms.IntegerField(label='Number 2')
 
 
 class BothForm(forms.Form):

@@ -99,28 +99,44 @@ class Earnings(View):
 
 
 class Both(View):
-    def get(self, request):
-        form = forms.BothForm(data=request.GET)
+    def post(self, request):
+        form = forms.BothForm(data=request.POST)
         if form.is_valid():
             input_1 = form.cleaned_data['input_1']
             input_2 = form.cleaned_data['input_2']
             if input_1 and input_2:
-                return render(request, 'app/both.html', {'answer': True})
+                return render(
+                    request,
+                    'app/both.html',
+                    {
+                        'answer': True,
+                        'bothForm': form
+                    },
+                )
             else:
-                return render(request, 'app/both.html', {'answer': False})
+                return render(request, 'app/both.html', {
+                    'answer': False,
+                })
         else:
-            return render(request, 'app/both.html')
+            return render(request, 'app/both.html', {'bothForm': form})
+
+    def get(self, request):
+        return render(
+            request,
+            'app/earnings.html',
+            {'bothForm': forms.BothForm()},
+        )
 
 
 class WalkOrDrive(View):
-    def get(self, request):
-        form = forms.WalkOrDrive(data=request.GET)
+    def post(self, request):
+        form = forms.WalkOrDrive(data=request.POST)
         if form.is_valid():
             distance_input = form.cleaned_data['distance_input']
             is_nice_weather_input = form.cleaned_data['is_nice_weather_input']
             if distance_input <= 0.25 and is_nice_weather_input:
                 return render(request, 'app/walk-or-drive.html',
-                              {'answer': 'walk'})
+                              {'answer': 'walk', ''})
             else:
                 return render(request, 'app/walk-or-drive.html',
                               {'answer': 'drive'})

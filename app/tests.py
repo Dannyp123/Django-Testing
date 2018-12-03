@@ -287,7 +287,7 @@ class TestInvalidSeats(SimpleTestCase):
 
 class TestBoth(SimpleTestCase):
     def test_if_true(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse("both"),
             data={
                 'input_1': 'True',
@@ -298,7 +298,7 @@ class TestBoth(SimpleTestCase):
         self.assertEqual(response.context["answer"], True)
 
     def test_if_false(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse("both"),
             data={
                 'input_1': 'False',
@@ -308,7 +308,7 @@ class TestBoth(SimpleTestCase):
         self.assertEqual(response.context["answer"], False)
 
     def test_if_false_or_true(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse("both"),
             data={
                 'input_1': 'False',
@@ -319,7 +319,7 @@ class TestBoth(SimpleTestCase):
         self.assertEqual(response.context["answer"], False)
 
     def test_if_true_or_false(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse("both"),
             data={
                 'input_1': 'True',
@@ -328,17 +328,6 @@ class TestBoth(SimpleTestCase):
         )
         self.assertEqual(response.context['answer'], False)
 
-# class TestNotTrueNorFalse(SimpleTestCase):
-#     def test_empty_check_boxes(self):
-#         response = self.client.get(
-#             path=reverse("both"),
-#             data={
-#                 'input_1': '',
-#                 'input_2': ''
-#             },
-#         )
-#         self.assertTemplateUsed(response, 'app/both.html')
-#         self.assertNotIn('answer', response.context)
 
 
 class TestWalkOrDrive(SimpleTestCase):

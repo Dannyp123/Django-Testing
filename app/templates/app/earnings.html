@@ -2,7 +2,7 @@
 {% block body %}
 <form action="{% url 'earnings' %}" method="POST" class="col-3">
     {% csrf_token %}
-    {{earningsForm}}
+    {{earningsForm.as_p}}
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Calculate Total</button>
     </div>
