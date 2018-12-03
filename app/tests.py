@@ -129,7 +129,7 @@ class TestDoubleCanHandleSimpleDoubling(SimpleTestCase):
     '''
 
     def test_four_doubled(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('double'),
             data={"num1": '4'},
         )
@@ -137,35 +137,35 @@ class TestDoubleCanHandleSimpleDoubling(SimpleTestCase):
         self.assertEqual(response.context["solution"], 8)
 
     def test_eight_doubled(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('double'),
             data={"num1": '8'},
         )
         self.assertEqual(response.context['solution'], 16)
 
     def test_zero_doubled(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('double'),
             data={'num1': '0'},
         )
         self.assertEqual(response.context['solution'], 0)
 
     def test_float_doubled(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('double'),
             data={'num1': '2.2'},
         )
         self.assertEqual(response.context['solution'], 4.4)
 
     def test_negative_four_doubled(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('double'),
             data={'num1': '-4'},
         )
         self.assertEqual(response.context['solution'], -8)
 
     def test_one_doubled(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('double'),
             data={'num1': '1'},
         )
@@ -173,7 +173,7 @@ class TestDoubleCanHandleSimpleDoubling(SimpleTestCase):
 
 class TestDoubleCanHandleNonNumber(SimpleTestCase):
     def test_given_non_numeric_input_for_double(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('double'),
             data={
                 "num1": 'a'
@@ -183,7 +183,7 @@ class TestDoubleCanHandleNonNumber(SimpleTestCase):
         self.assertNotIn("answer", response.context)
 
     def test_given_one_empty_inputs_for_double(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('double'),
             data={
                 "num1": " "
