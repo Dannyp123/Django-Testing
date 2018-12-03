@@ -4,14 +4,24 @@ from . import forms
 
 
 class Add(View):
-    def get(self, request):
-        form = forms.AddForm(data=request.GET)
+    def post(self, request):
+        form = forms.AddForm(data=request.POST)
         if form.is_valid():
             num1 = form.cleaned_data['num1']
             num2 = form.cleaned_data['num2']
-            return render(request, 'app/add.html', {'answer': num1 + num2})
+            return render(request, 'app/add.html', {
+                'answer': num1 + num2,
+                'addForm': form
+            })
         else:
-            return render(request, 'app/add.html')
+            return render(request, 'app/add.html', {'addForm': form})
+
+    def get(self, request):
+        return render(
+            request,
+            'app/add.html',
+            {'addForm': forms.AddForm()},
+        )
 
 
 class Double(View):
