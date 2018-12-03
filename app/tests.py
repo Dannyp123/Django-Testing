@@ -13,7 +13,7 @@ class TestAddCanHandleSimpleAddition(SimpleTestCase):
     '''
 
     def test_two_plus_two(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('add'),
             data={
                 "num1": '2',
@@ -24,7 +24,7 @@ class TestAddCanHandleSimpleAddition(SimpleTestCase):
         self.assertEqual(response.context['answer'], 4)
 
     def test_two_plus_negative_one(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('add'),
             data={
                 "num1": '2',
@@ -34,7 +34,7 @@ class TestAddCanHandleSimpleAddition(SimpleTestCase):
         self.assertEqual(response.context["answer"], 1)
 
     def test_zero_plus_zero(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('add'),
             data={
                 "num1": '0',
@@ -45,7 +45,7 @@ class TestAddCanHandleSimpleAddition(SimpleTestCase):
         self.assertEqual(response.context["answer"], 0)
 
     def test_float_plus_float(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('add'),
             data={
                 "num1": '2.3',
@@ -56,7 +56,7 @@ class TestAddCanHandleSimpleAddition(SimpleTestCase):
         self.assertEqual(response.context["answer"], 3.5)
 
     def test_neg_plus_neg(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('add'),
             data={
                 "num1": '-2',
