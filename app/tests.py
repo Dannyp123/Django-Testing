@@ -377,7 +377,7 @@ class TestInvalidDistance(SimpleTestCase):
 
 class TestHowPopulated(SimpleTestCase):
     def test_sparsely_populated(self):
-        response = self.client.get(
+        response = self.client.post(
             path = reverse('how_populated'),
             data={
                 'population_input': 25000,
@@ -387,7 +387,7 @@ class TestHowPopulated(SimpleTestCase):
         self.assertEqual(response.context['answer'], 'Sparsely Populated')
 
     def test_densely_populated(self):
-        response = self.client.get(
+        response = self.client.post(
             path = reverse('how_populated'),
             data={
                 'population_input': 25000,
