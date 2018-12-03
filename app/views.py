@@ -114,3 +114,42 @@ class GoldStars(View):
                               {'answer': '*****'})
         else:
             return render(request, 'app/gold-stars.html')
+
+
+class HowManyPoints(View):
+    def get(self, request):
+        form = forms.HowManyPoints(data=request.GET)
+        if form.is_valid():
+            points_input = form.cleaned_data['points_input']
+            if points_input == 'extra kick':
+                return render(
+                    request,
+                    'app/points.html',
+                    {'answer': 1},
+                )
+            elif points_input == 'extra conv':
+                return render(
+                    request,
+                    'app/points.html',
+                    {'answer': 2},
+                )
+            elif points_input == 'safety':
+                return render(
+                    request,
+                    'app/points.html',
+                    {'answer': 2},
+                )
+            elif points_input == 'fg':
+                return render(
+                    request,
+                    'app/points.html',
+                    {'answer': 3},
+                )
+            elif points_input == 'td':
+                return render(
+                    request,
+                    'app/points.html',
+                    {'answer': 6},
+                )
+        else:
+            return render(request, 'app/points.html')
