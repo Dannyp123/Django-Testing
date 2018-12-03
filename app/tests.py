@@ -203,30 +203,30 @@ class TestTripleCanHandleSimpleTripling(SimpleTestCase):
     '''
 
     def test_four_tripled(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('triple'),
             data={"num1": '4'},
         )
         self.assertEqual(response.context['answer'], 12)
 
     def test_ten_tripled(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse("triple"),
             data={"num1": '10'},
         )
         self.assertEqual(response.context['answer'], 30)
 
     def test_one_tripled(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse("triple"),
             data={"num1": '1'},
         )
-        self.assertEqual(response.context.get('answer'), 3)
+        self.assertEqual(response.context['answer'], 3)
 
 
 class TestTripleCanHandleBadCases(SimpleTestCase):
     def test_given_non_numeric_input_for_triple(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('triple'),
             data={
                 "num1": 'a',

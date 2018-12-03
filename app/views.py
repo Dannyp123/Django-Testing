@@ -49,13 +49,19 @@ class Double(View):
 
 
 class Triple(View):
-    def get(self, request):
-        form = forms.TripleForm(data=request.GET)
+    def post(self, request):
+        form = forms.TripleForm(data=request.POST)
         if form.is_valid():
             num1 = form.cleaned_data['num1']
-            return render(request, 'app/triple.html', {'answer': num1 * 3})
+            return render(request, 'app/triple.html', {'answer': num1 * 3, 'tripleForm': form },)
         else:
-            return render(request, 'app/triple.html')
+            return render(request, 'app/triple.html', {'tripleForm': form})
+    def get(self, request):
+        return render(
+            request,
+            'app/triple.html',
+            {'tripleForm': forms.TripleForm()},
+        )
 
 
 class Earnings(View):
