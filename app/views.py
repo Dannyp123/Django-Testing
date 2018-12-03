@@ -130,18 +130,28 @@ class Both(View):
 
 class WalkOrDrive(View):
     def post(self, request):
-        form = forms.WalkOrDrive(data=request.POST)
+        form = forms.WalkOrDriveForm(data=request.POST)
         if form.is_valid():
             distance_input = form.cleaned_data['distance_input']
             is_nice_weather_input = form.cleaned_data['is_nice_weather_input']
             if distance_input <= 0.25 and is_nice_weather_input:
-                return render(request, 'app/walk-or-drive.html',
-                              {'answer': 'walk', ''})
+                return render(request, 'app/walk-or-drive.html', {
+                    'answer': 'walk',
+                    'walk_or_driveForm': form
+                })
             else:
                 return render(request, 'app/walk-or-drive.html',
                               {'answer': 'drive'})
         else:
-            return render(request, 'app/walk-or-drive.html')
+            return render(request, 'app/walk-or-drive.html',
+                          {'walk_or_driveForm': form})
+
+    def get(self, request):
+        return render(
+            request,
+            'app/walk-or-drive.html',
+            {'walk_or_driveForm': forms.WalkOrDriveForm()},
+        )
 
 
 class HowPopulated(View):

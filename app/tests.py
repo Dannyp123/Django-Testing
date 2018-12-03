@@ -332,7 +332,7 @@ class TestBoth(SimpleTestCase):
 
 class TestWalkOrDrive(SimpleTestCase):
     def test_walk(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('walk_or_drive'),
             data={
                 'distance_input': '0.15',
@@ -342,7 +342,7 @@ class TestWalkOrDrive(SimpleTestCase):
         self.assertEqual(response.context['answer'], 'walk')
 
     def test_drive(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('walk_or_drive'),
             data={
                 'distance_input': '1.50',
@@ -352,7 +352,7 @@ class TestWalkOrDrive(SimpleTestCase):
         self.assertEqual(response.context['answer'], 'drive')
 
     def test_drive_second(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse('walk_or_drive'),
             data={
                 'distance_input': '5.00',
