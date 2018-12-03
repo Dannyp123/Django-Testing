@@ -25,13 +25,27 @@ class Add(View):
 
 
 class Double(View):
-    def get(self, request):
-        form = forms.DoubleForm(data=request.GET)
+    def post(self, request):
+        form = forms.DoubleForm(data=request.POST)
         if form.is_valid():
             num1 = form.cleaned_data['num1']
-            return render(request, 'app/double.html', {'solution': num1 * 2})
+            return render(
+                request,
+                'app/double.html',
+                {
+                    'solution': num1 * 2,
+                    'doubleForm': form
+                },
+            )
         else:
-            return render(request, 'app/double.html')
+            return render(request, 'app/double.html', {'doubleForm': form})
+
+    def get(self, request):
+        return render(
+            request,
+            'app/double.html',
+            {'doubleForm': forms.DoubleForm()},
+        )
 
 
 class Triple(View):
