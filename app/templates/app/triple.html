@@ -1,14 +1,15 @@
-% extends 'app/base.html' %}
+{% extends 'app/base.html' %}
 {% block body %}
 
-<form action="{% url 'triple' %}" method="POST" class="col-3">
-    <div class="form-group">
+<form action="{% url 'triple' %}" method="POST" novalidate class="col-3">
+    {% csrf_token %}
+    <div class="">
         {{ tripleForm.as_p }}
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Triple</button>
     </div>
-    {% if solution is not None %}
+    {% if answer is not None %}
     <h3>Answer: {{ answer }}</h3>
     {% endif %}
 </form>

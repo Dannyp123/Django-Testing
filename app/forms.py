@@ -12,6 +12,8 @@ class DoubleForm(forms.Form):
 
 class TripleForm(forms.Form):
     num1 = forms.FloatField(label='Number 1')
+    num2 = forms.FloatField(label='Number 2')
+    num3 = forms.FloatField(label='Number 3')
 
 
 class EarningsForm(forms.Form):

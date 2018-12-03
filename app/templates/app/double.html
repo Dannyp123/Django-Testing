@@ -3,6 +3,7 @@
 
 <form action="{% url 'double' %}" method="POST" class="col-3">
     <div class="form-group">
+        {% csrf_token %}
         {{ doubleForm.as_p }}
     </div>
     <div class="form-group">

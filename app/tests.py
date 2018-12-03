@@ -205,23 +205,23 @@ class TestTripleCanHandleSimpleTripling(SimpleTestCase):
     def test_four_tripled(self):
         response = self.client.post(
             path=reverse('triple'),
-            data={"num1": '4'},
+            data={"num1": '4', 'num2': '2', 'num3': '1'},
         )
-        self.assertEqual(response.context['answer'], 12)
+        self.assertEqual(response.context['answer'], 8)
 
     def test_ten_tripled(self):
         response = self.client.post(
             path=reverse("triple"),
-            data={"num1": '10'},
+            data={"num1": '10', 'num2': '2', 'num3': '1'},
         )
-        self.assertEqual(response.context['answer'], 30)
+        self.assertEqual(response.context['answer'], 20)
 
     def test_one_tripled(self):
         response = self.client.post(
             path=reverse("triple"),
-            data={"num1": '1'},
+            data={"num1": '1', 'num2': '2', 'num3': '5'},
         )
-        self.assertEqual(response.context['answer'], 3)
+        self.assertEqual(response.context['answer'], 10)
 
 
 class TestTripleCanHandleBadCases(SimpleTestCase):
@@ -237,7 +237,7 @@ class TestTripleCanHandleBadCases(SimpleTestCase):
 
 class TestEarnings(SimpleTestCase):
     def test_total_seats(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse("earnings"),
             data={
                 'seat_a': '4',
@@ -248,7 +248,7 @@ class TestEarnings(SimpleTestCase):
         self.assertEqual(response.context.get('answer'), 141)
 
     def test_total_seats_second(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse("earnings"),
             data={
                 'seat_a': '5',
@@ -259,7 +259,7 @@ class TestEarnings(SimpleTestCase):
         self.assertEqual(response.context.get("answer"), 165)
 
     def test_total_seats_third(self):
-        response = self.client.get(
+        response = self.client.post(
             path=reverse("earnings"),
             data={
                 'seat_a': '2',

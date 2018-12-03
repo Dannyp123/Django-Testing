@@ -53,9 +53,20 @@ class Triple(View):
         form = forms.TripleForm(data=request.POST)
         if form.is_valid():
             num1 = form.cleaned_data['num1']
-            return render(request, 'app/triple.html', {'answer': num1 * 3, 'tripleForm': form },)
+            num2 = form.cleaned_data['num2']
+            num3 = form.cleaned_data['num3']
+            return render(
+                request,
+                'app/triple.html',
+                {
+                    'answer': num1 * num2 * num3,
+                    'tripleForm': form
+                },
+            )
         else:
+            print('right here')
             return render(request, 'app/triple.html', {'tripleForm': form})
+
     def get(self, request):
         return render(
             request,
@@ -65,17 +76,26 @@ class Triple(View):
 
 
 class Earnings(View):
-    def get(self, request):
-        seat = forms.EarningsForm(data=request.GET)
+    def post(self, request):
+        seat = forms.EarningsForm(data=request.POST)
         if seat.is_valid():
             seat_a = seat.cleaned_data['seat_a']
             seat_b = seat.cleaned_data['seat_b']
             seat_c = seat.cleaned_data['seat_c']
-            return render(request, 'app/earnings.html', {
-                'answer': seat_a * 15 + seat_b * 12 + seat_c * 9,
-            })
+            return render(
+                request, 'app/earnings.html', {
+                    'answer': seat_a * 15 + seat_b * 12 + seat_c * 9,
+                    'earningsForm': seat
+                })
         else:
-            return render(request, 'app/earnings.html')
+            return render(request, 'app/earnings.html', {'earningsForm': seat})
+
+    def get(self, request):
+        return render(
+            request,
+            'app/earnings.html',
+            {'earningsForm': forms.EarningsForm()},
+        )
 
 
 class Both(View):
