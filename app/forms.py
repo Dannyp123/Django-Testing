@@ -7,7 +7,7 @@ class AddForm(forms.Form):
 
 
 class DoubleForm(forms.Form):
-    num1 = forms.FloatField()
+    num1 = forms.FloatField(label='Number 1')
 
 
 class TripleForm(forms.Form):
