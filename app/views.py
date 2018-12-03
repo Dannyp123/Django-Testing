@@ -173,9 +173,8 @@ class HowPopulated(View):
                 return render(request, 'app/how-populated.html',
                               {'answer': 'Sparsely Populated'})
         else:
-            return render(request, 'app/how-populated.html'), {
-                'how_populatedForm': form()
-            }
+            return render(request, 'app/how-populated.html',
+                          {'how_populatedForm': form})
 
     def get(self, request):
         return render(
