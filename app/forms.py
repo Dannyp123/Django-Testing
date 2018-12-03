@@ -2,8 +2,8 @@ from django import forms
 
 
 class AddForm(forms.Form):
-    num1 = forms.FloatField()
-    num2 = forms.FloatField()
+    num1 = forms.FloatField(label='Number 1')
+    num2 = forms.FloatField(label='Number 2')
 
 
 class DoubleForm(forms.Form):
